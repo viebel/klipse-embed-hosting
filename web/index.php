@@ -15,7 +15,7 @@
     <meta name="twitter:site" content="@viebel">
     <meta name="twitter:title" content="Klipse Interactive and Shareable Code Snippet">
     <meta name="twitter:description" content="Klipse Interactive and Shareable Code Snippet">
-    <meta property="twitter:image" content='https://orgpad.com/screenshot?url=<?php echo urlencode("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]")?>'>
+    <meta property="twitter:image" content='<?php echo $klipse_embed_url ?>/img/klipse_snippet.png?url=<?php echo urlencode("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]")?>'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="icon" href="<?php echo $klipse_embed_url ?>/img/favicon.png">
 </head>
