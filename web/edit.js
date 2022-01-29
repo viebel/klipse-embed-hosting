@@ -45,57 +45,57 @@
 
   var defaultSrc = '// Type your code here';
 
-  var pythonSnippet = [
-    '# Write your own Python code', 
-    '# Beautiful is better than ugly',
-    'language = "Python"',
-    'print("I love {}!".format(language))'
-  ];
+  var pythonSnippet = `
+ # Write your own Python code
+ # Beautiful is better than ugly
+ language = "Python"
+ print("I love {}!".format(language))
+ `;
 
-  var clojureSnippet = [
-    ';; Create your own Clojure forms', 
-    ';; Simple is not easy', 
-    '(map inc [1 2 3])',
-  ];
+  var clojureSnippet = `
+ ;; Create your own Clojure forms 
+ ;; Simple is not easy
+ (map inc [1 2 3])
+ `;
 
-  var reagentSnippet = [
-    ';; Design your own Reagent components',
-    ';; Keep in mind minimalism',
-  '(require \'[reagent.core :as r]) ',
-'',
-'(defn hello [me]',
-'  [:div',
-'   [:h3 "Hello " me]',
-'   [:p',
-'    "I have " [:strong "bold"] " and"',
-'    [:span {:style {:color "red"}} " red"]',
- '   " text."]])',
-'',
-'[hello "Reagent"]',
-  ];
+  var reagentSnippet = `
+;; Design your own Reagent components
+;; Keep in mind minimalism
+(require \'[reagent.core :as r])
 
-  var javascriptSnippet = [
-    '// Write your own JavaScript code',
-    '// The strength of JavaScript is that you can do anything. The weakness is that you will.',
-    '[1, 2, 3].map(x => x + 1);',
-  ];
+(defn hello [me]
+  [:div
+   [:h3 "Hello " me]
+   [:p
+    "I have " [:strong "bold"] " and"
+    [:span {:style {:color "red"}} " red"]
+   " text."]])
 
-  var rubySnippet = [
-    '# Type your own Ruby code',
-    '# Keep the elegance and simplicity of Ruby',
-    'class Greeter',
-    '  def initialize(name)',
-    '    @name = name.capitalize',
-    '  end',
-'',
-'      def salute',
-'        "Hello #{@name}!"',
-'      end',
-'    end',
-'',
-'    g = Greeter.new("world")',
-'    g.salute',
-  ];
+[hello "Reagent"]
+`;
+
+  var javascriptSnippet = `
+// Write your own JavaScript code
+// The strength of JavaScript is that you can do anything. The weakness is that you will.
+[1, 2, 3].map(x => x + 1);
+`;
+
+  var rubySnippet = `
+# Type your own Ruby code
+# Keep the elegance and simplicity of Ruby
+class Greeter
+  def initialize(name)
+    @name = name.capitalize
+  end
+
+  def salute
+    "Hello #{@name}!"
+  end
+end
+
+g = Greeter.new("world")
+g.salute
+`;
 
   var pythonTurtleSnippet = `
 import turtle
@@ -118,12 +118,12 @@ hilbert2(5, "a", 90, 5, myTurtle)
 `;
 
   var defaultSrcByLang = {
-    'clojure': clojureSnippet.join('\n'),
-    'javascript': javascriptSnippet.join('\n'),
-    'python': pythonSnippet.join('\n'),
+    'clojure': clojureSnippet,
+    'javascript': javascriptSnippet,
+    'python': pythonSnippet,
     'pythonTurtle': pythonTurtleSnippet,
-    'reagent': reagentSnippet.join('\n'),
-    'ruby': rubySnippet.join('\n'),
+    'reagent': reagentSnippet,
+    'ruby': rubySnippet,
   };
 
   function setKlipseSettings () {
