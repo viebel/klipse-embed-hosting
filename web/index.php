@@ -21,6 +21,15 @@
     <meta property="twitter:image" content="<?php echo $screenshot_url ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" href="<?php echo $klipse_embed_url ?>/img/favicon.png">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEG062XVH3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-QEG062XVH3');
+    </script>
 </head>
 <body>
     <div id="snippets"></div>
