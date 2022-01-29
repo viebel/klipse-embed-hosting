@@ -11,7 +11,8 @@
     'lua': 'Lua',
     'markdown': 'Markdown',
     'ocaml': 'OCaml',
-    'python': 'Python',
+    'python': 'Python 3',
+    'python2': 'Python 2',
     'pythonTurtle': 'Python Turtle',
     'ruby': 'Ruby',
     'sql': 'SQL',
@@ -31,6 +32,7 @@
     'markdown',
     'ocaml',
     'python',
+    'python2',
     'pythonTurtle',
     'ruby',
     'sql',
@@ -98,6 +100,11 @@ g = Greeter.new("world")
 g.salute
 `;
 
+  var python2Snippet = `
+# Write your own Python code
+# Beautiful is better than ugly
+print("I love Python")
+`;
   var pythonTurtleSnippet = `
 import turtle
 
@@ -123,6 +130,7 @@ hilbert2(5, "a", 90, 5, myTurtle)
     'javascript': javascriptSnippet,
     'python': pythonSnippet,
     'pythonTurtle': pythonTurtleSnippet,
+    'python2': python2Snippet,
     'reagent': reagentSnippet,
     'ruby': rubySnippet,
   };
@@ -131,6 +139,7 @@ hilbert2(5, "a", 90, 5, myTurtle)
     window.klipse_settings = {
       codemirror_options_in: {
         lineWrapping: true,
+        lineNumbers: true,
         autoCloseBrackets: true
       },
       codemirror_options_out: {
@@ -151,7 +160,7 @@ hilbert2(5, "a", 90, 5, myTurtle)
       selector_eval_markdown: '.markdown',
       selector_eval_lambdaway: '.klipse-lambdaway',
       selector_pyodide: '.python',
-      selector_eval_python_client: '.pythonTurtle',
+      selector_eval_python_client: '.pythonTurtle, .python2',
       selector_eval_html: '.html',
       selector_sql: '.sql',
       selector_eval_ruby: '.ruby',
@@ -375,11 +384,15 @@ hilbert2(5, "a", 90, 5, myTurtle)
 
   function languages() {
     var res = clojureModeOn(getSearchParams()) ? [...basicLanguages, ...clojureLanguages] : [...basicLanguages];
-    return res.sort();
+    return res.sort(function(a, b) {
+      return languageNames[a].localeCompare(languageNames[b]);
+    });
   }
 
   function allLanguages() {
-    return [...basicLanguages, ...clojureLanguages].sort();
+    return [...basicLanguages, ...clojureLanguages].sort(function(a, b) {
+      return languageNames[a].localeCompare(languageNames[b]);
+    });
   }
 
   function addEventHandlers(snippets) {

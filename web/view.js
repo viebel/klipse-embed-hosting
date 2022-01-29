@@ -1,6 +1,7 @@
 (function() {
   var klipseMinURL = "https://storage.googleapis.com/app.klipse.tech/plugin_prod/js/klipse_plugin.min.js" ;
   var klipseClojureURL =  "https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js?v=8.0.1";
+
   function setKlipseSettings () {
     window.klipse_settings = {
       codemirror_options_in: {
@@ -26,6 +27,7 @@
       selector_eval_markdown: '.markdown',
       selector_eval_lambdaway: '.klipse-lambdaway',
       selector_pyodide: '.python',
+      selector_eval_python_client: '.pythonTurtle, .python2',
       selector_eval_html: '.html',
       selector_sql: '.sql',
       selector_eval_ruby: '.ruby',
