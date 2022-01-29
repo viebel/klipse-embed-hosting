@@ -46,11 +46,12 @@
   var defaultSrc = '// Type your code here';
 
   var pythonSnippet = `
- # Write your own Python code
- # Beautiful is better than ugly
- language = "Python"
- print("I love {}!".format(language))
- `;
+# Write your own Python code
+# Beautiful is better than ugly
+language = "Python"
+version = 3
+f"I love {language} {version} and its new f-Strings."
+`;
 
   var clojureSnippet = `
  ;; Create your own Clojure forms 
