@@ -10,6 +10,15 @@
                 <title>Create a Klipse Embed</title>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <link rel="icon" href="<?php echo $klipse_embed_url ?>/img/favicon.png">
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEG062XVH3"></script>
+                <script>
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+
+                  gtag('config', 'G-QEG062XVH3');
+                </script>
         </head>
         <body>
                 <div class="header">
