@@ -1,0 +1,185 @@
+
+.button-8 {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button-8.select-8 {
+}
+
+
+.button-8:hover,
+.button-8:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.button-8:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button-8:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
+}
+
+.button-wrapper {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.klipse-snippet-wrapper {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.removeBtn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.authoring  * {
+  font-size: 24px;
+}
+
+.authoring {
+  padding: 15px 0px 15px 0px;
+}
+
+a:link {
+  padding-left: 10px;
+  color: #39739d;
+  text-decoration: none;
+}
+
+a:visited {
+  padding-left: 10px;
+  color: #39739d;
+  text-decoration: none;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.reset {
+  clear: both;
+}
+
+.share-url-wrapper {
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+
+}
+
+.share-url-wrapper span {
+  border: 1px solid #7aa7c7;
+  border-left: none;
+  border-right: none;
+  padding: 0;
+  margin: 0;
+  padding-right:10px;
+  display: table;
+}
+.share-url-wrapper > * {
+  float: left;
+  display: table-cell;
+}
+
+.share-url-wrapper input {
+  border: none;
+  font-size: 0.7em;
+  color: #39739d;
+  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  width:300px;
+}
+
+.horizontal-space {
+  margin-left: 5px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+clipboard-copy.button-8 {
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#share-url-select {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+clipboard-copy i {
+  font-size: 0.8em !important;
+}
+
+body * {
+  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  padding: 10px 10px 10px 10px;
+}
+
+.header {
+  top: 0;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  width: 100%;
+  font-size: 2em;
+  height: 50px;
+  background-color: #e1ecf4;
+  color: #39739d;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.my-github {
+  margin-right: 10px;
+  padding-right: 10px;
+}
+
+.logo {
+  width: 40px;
+}
+
+.logo-wrapper {
+  padding-right: 10px;
+}
+
+.CodeMirror  *{
+    font-family: 'FiraCode', monospace !important;
+}
+

@@ -1,6 +1,3 @@
-<?php 
-  $klipse_embed_url = 'https://viebel.github.io/klipse-embed';
-?>
 <!DOCTYPE html>
 <html lang="en">
         <head>
@@ -9,7 +6,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <title>Create a Klipse Embed</title>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
-                <link rel="icon" href="<?php echo $klipse_embed_url ?>/img/favicon.png">
+                <link rel="icon" href="/img/favicon.png">
                 <!-- Global site tag (gtag.js) - Google Analytics -->
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEG062XVH3"></script>
                 <script>
@@ -24,7 +21,7 @@
                 <div class="header">
                         <div class="left">
                                 <a class="logo-wrapper left" target="_new" href="https://github.com/viebel/klipse">
-                                        <image class="logo" src="<?php echo $klipse_embed_url ?>/img/klipse.png"></image>
+                                        <image class="logo" src="/img/klipse.png"></image>
                                 </a>
                                 <span>
                                 Klipse: Interactive & Shareable Code Snippets
@@ -78,9 +75,9 @@
                         </div>
                         <div id="snippets"></div>
                 </div>
-                <script src="<?php echo $klipse_embed_url ?>/edit.js"></script>
+                <script src="/edit.js"></script>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-                <link rel="stylesheet" type="text/css" href="<?php echo $klipse_embed_url ?>/edit.css">
+                <link rel="stylesheet" type="text/css" href="/edit.css">
                 <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css">
         </body>
 </html>

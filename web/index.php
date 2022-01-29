@@ -1,6 +1,5 @@
 <?php 
-  $klipse_embed_url = 'https://viebel.github.io/klipse-embed';
-  $screenshot_url = $klipse_embed_url . "/img/klipse_snippet.png?url=" . urlencode("https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+  $screenshot_url = "/img/klipse_snippet.png?url=" . urlencode("https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
 ?>
 <!doctype html>
 <html lang="en" translate="no">
@@ -20,7 +19,7 @@
     <meta name="twitter:description" content="Klipse Interactive and Shareable Code Snippet">
     <meta property="twitter:image" content="<?php echo $screenshot_url ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="icon" href="<?php echo $klipse_embed_url ?>/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEG062XVH3"></script>
     <script>
@@ -33,8 +32,8 @@
 </head>
 <body>
     <div id="snippets"></div>
-    <script src="<?php echo $klipse_embed_url ?>/view.js"></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo $klipse_embed_url ?>/view.css">
+    <script src="/view.js"></script>
+    <link rel="stylesheet" type="text/css" href="/view.css">
     <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css">
 </body>
 </html>
