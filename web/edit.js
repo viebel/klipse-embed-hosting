@@ -12,6 +12,7 @@
     'markdown': 'Markdown',
     'ocaml': 'OCaml',
     'python': 'Python',
+    'pythonTurtle': 'Python Turtle',
     'ruby': 'Ruby',
     'sql': 'SQL',
     'scheme': 'Scheme',
@@ -30,6 +31,7 @@
     'markdown',
     'ocaml',
     'python',
+    'pythonTurtle',
     'ruby',
     'sql',
     'scheme'];
@@ -95,10 +97,31 @@
 '    g.salute',
   ];
 
+  var pythonTurtleSnippet = `
+import turtle
+
+def hilbert2(step, rule, angle, depth, t):
+   if depth > 0:
+      a = lambda: hilbert2(step, "a", angle, depth - 1, t)
+      b = lambda: hilbert2(step, "b", angle, depth - 1, t)
+      left = lambda: t.left(angle)
+      right = lambda: t.right(angle)
+      forward = lambda: t.forward(step)
+      if rule == "a":
+        left(); b(); forward(); right(); a(); forward(); a(); right(); forward(); b(); left();
+      if rule == "b":
+        right(); a(); forward(); left(); b(); forward(); b(); left(); forward(); a(); right();
+        
+myTurtle = turtle.Turtle()
+myTurtle.speed(0)
+hilbert2(5, "a", 90, 5, myTurtle)
+`;
+
   var defaultSrcByLang = {
     'clojure': clojureSnippet.join('\n'),
     'javascript': javascriptSnippet.join('\n'),
     'python': pythonSnippet.join('\n'),
+    'pythonTurtle': pythonTurtleSnippet,
     'reagent': reagentSnippet.join('\n'),
     'ruby': rubySnippet.join('\n'),
   };
@@ -127,6 +150,7 @@
       selector_eval_markdown: '.markdown',
       selector_eval_lambdaway: '.klipse-lambdaway',
       selector_pyodide: '.python',
+      selector_eval_python_client: '.pythonTurtle',
       selector_eval_html: '.html',
       selector_sql: '.sql',
       selector_eval_ruby: '.ruby',
