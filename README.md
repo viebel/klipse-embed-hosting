@@ -1,6 +1,6 @@
 # Klipse embed
 
-Create interactive code snippets and share them on Twitter, Slack etc...
+Create interactive code snippets and share them on Twitter, Slack, inside an iframe etc...
 
 The code runs in the browser! No server-side evaluation.
 
