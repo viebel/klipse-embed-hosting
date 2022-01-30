@@ -1,5 +1,5 @@
 <?php 
-  $screenshot_url = "/img/klipse_snippet.png?url=" . urlencode("https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+  $screenshot_url = "https://orgpad.com/api/klipse-screenshot?url=" . urlencode("https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
 ?>
 <!doctype html>
 <html lang="en" translate="no">
