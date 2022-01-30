@@ -1,3 +1,4 @@
-# Hosting Klipse embed
+# Klipse embed
 
-See https://github.com/viebel/klipse-embed
+Create interactive code snippets and share them on Twitter, Slack etc...
+
