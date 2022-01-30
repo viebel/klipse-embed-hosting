@@ -17,7 +17,7 @@
     <meta name="twitter:site" content="@viebel">
     <meta name="twitter:title" content="Klipse Interactive and Shareable Code Snippet">
     <meta name="twitter:description" content="Klipse Interactive and Shareable Code Snippet">
-    <meta property="twitter:image" content="<?php echo $screenshot_url ?>">
+    <meta property="twitter:image" content="<?php echo $screenshot_url . '&twitter=true' ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" href="/img/favicon.png">
     <!-- Global site tag (gtag.js) - Google Analytics -->
