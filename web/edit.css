@@ -183,3 +183,11 @@ body {
     font-family: 'FiraCode', monospace !important;
 }
 
+.klipse-result .CodeMirror {
+    border-top: 0;
+    border-radius: 0px 0px 2px 2px;
+}
+
+.klipse-snippet > .CodeMirror {
+    border-radius: 2px 2px 0px 0px;
+}
