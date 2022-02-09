@@ -18,6 +18,7 @@
     'sql': 'SQL',
     'scheme': 'Scheme',
     'clojure': 'Clojure',
+    'cljsTranspile': 'ClojureScript Transpile',
     'reagent': 'Reagent',
   };
 
@@ -40,6 +41,7 @@
 
   var clojureLanguages = [
     'clojure',
+    'cljsTranspile',
     'reagent',
   ];
 
@@ -59,6 +61,16 @@ f"I love {language} {version} and its new f-Strings."
  ;; Create your own Clojure forms 
  ;; Simple is not easy
  (map inc [1 2 3])
+ `;
+
+  var cljsTranspileSnippet = `
+ ;; Create your own Clojure forms 
+ ;; Simple is not easy
+(let [a (rand)
+      b (if (> a 0.5)
+          "yes"
+          "no")]
+  b)
  `;
 
   var reagentSnippet = `
@@ -127,6 +139,7 @@ hilbert2(5, "a", 90, 5, myTurtle)
 
   var defaultSrcByLang = {
     'clojure': clojureSnippet,
+    'cljsTranspile': cljsTranspileSnippet,
     'javascript': javascriptSnippet,
     'python': pythonSnippet,
     'pythonTurtle': pythonTurtleSnippet,
@@ -147,6 +160,7 @@ hilbert2(5, "a", 90, 5, myTurtle)
       },
       beautify_strings: true,
       selector: '.clojure, .clj, .cljs, .clojurescript',
+      selector_js: '.cljsTranspile',
       selector_eval_js: '.javascript, .js',
       selector_reagent: '.reagent',
       selector_golang: '.go, .golang',
@@ -185,6 +199,7 @@ hilbert2(5, "a", 90, 5, myTurtle)
   function clojureModeOn(params) {
     return (params.get("clojure") == "1") || 
       (params.get("lang") == "clojure") ||
+      (params.get("lang") == "cljsTranspile") ||
       (params.get("lang") == "reagent");
   }
 

@@ -14,6 +14,7 @@
       },
       beautify_strings: true,
       selector: '.clojure, .clj, .cljs, .clojurescript',
+      selector_js: '.cljsTranspile',
       selector_eval_js: '.javascript, .js',
       selector_reagent: '.reagent',
       selector_golang: '.go, .golang',
@@ -64,6 +65,7 @@
     'sql': 'SQL',
     'scheme': 'Scheme',
     'clojure': 'Clojure',
+    'cljsTranspile': 'ClojureScript Transpile',
     'reagent': 'Reagent',
   };
 
@@ -72,6 +74,7 @@
   function clojureModeOn(params) {
     return (params.get("clojure") == "1") || 
       (params.get("lang") == "clojure") ||
+      (params.get("lang") == "cljsTranspile") ||
       (params.get("lang") == "reagent");
   }
 
