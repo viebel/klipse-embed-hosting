@@ -1,5 +1,5 @@
 <?php 
-  $screenshot_url = "https://test1.orgpad.com/api/klipse-screenshot?url=" . urlencode("https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+  $screenshot_url = "https://klipse-screenshot.herokuapp.com/screenshot?url=" . urlencode("https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
 ?>
 <!doctype html>
 <html lang="en" translate="no">

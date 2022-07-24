@@ -157,7 +157,7 @@
     snippets.appendChild(container);
     var mention = document.createElement('div');
     mention.className = "mention";
-    mention.innerHTML = `Interactive ${languageNames[lang]} snippet powered with \u2764 by <a target = '_new' href='${editModeURL()}'>Klipse</a> and <a target='_new' href='https://orgpad.com/s/klipse'>OrgPad</a>`;
+    mention.innerHTML = `Interactive ${languageNames[lang]} snippet powered with \u2764 by <a target = '_new' href='${editModeURL()}'>Klipse</a>`;
     container.appendChild(mention);
   }
 
