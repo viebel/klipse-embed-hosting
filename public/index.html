@@ -1,83 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-        <head>
-                <meta charset="utf-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>Create a Klipse Embed</title>
-                <script async defer src="https://buttons.github.io/buttons.js"></script>
-                <link rel="icon" href="/img/favicon.png">
-                <!-- Global site tag (gtag.js) - Google Analytics -->
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEG062XVH3"></script>
-                <script>
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>Klipse — Interactive & Shareable Code Snippets</title>
+    <meta name="description" content="Write code that runs in the browser, then share it as a link or embed it anywhere.">
+    <link rel="icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css">
+    <link rel="stylesheet" href="/theme.css">
+    <link rel="stylesheet" href="/edit.css">
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEG062XVH3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-                  gtag('config', 'G-QEG062XVH3');
-                </script>
-        </head>
-        <body>
-                <div class="header">
-                        <div class="left">
-                                <a class="logo-wrapper left" target="_new" href="https://github.com/viebel/klipse">
-                                        <image class="logo" src="/img/klipse.png"></image>
-                                </a>
-                                <span>
-                                Klipse: Interactive & Shareable Code Snippets
-                                </span>
-                        </div>
-                        <div class="right">
-                                <span class="my-github">
-                                        <a class="github-button" href="https://github.com/viebel/klipse" data-size="large" data-show-count="true" aria-label="Star viebel/klipse-embed on GitHub">Star</a>
-                                </span>
-                        </div>
+      gtag('config', 'G-QEG062XVH3');
+    </script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Klipse home">
+          <span class="brand-name">klipse <span class="brand-product">snippets</span></span>
+        </a>
+        <nav class="nav" aria-label="Main">
+          <button id="toggle-info" class="nav-link" type="button" aria-expanded="false" aria-controls="info">docs</button>
+          <a class="nav-link nav-secondary" href="https://github.com/viebel/klipse" target="_blank" rel="noopener">src</a>
+          <a class="nav-link nav-secondary" href="https://github.com/viebel/klipse/issues" target="_blank" rel="noopener">issues</a>
+          <span class="github">
+            <a class="github-button" href="https://github.com/viebel/klipse" data-size="large" data-show-count="true" data-color-scheme="no-preference: dark; light: dark; dark: dark;" aria-label="Star viebel/klipse on GitHub">Star</a>
+          </span>
+        </nav>
+      </div>
+    </header>
 
-                </div>
-                <div class="main">
-                        <div id="buttons" class="authoring" style="visibility:hidden;">
-                                <div class="left">
-                                        <span class="share-url-wrapper">
-                                                <select id="share-url-select" title="Open Public URL" class="select-8 button-8 no-padding" title="">
-                                                        <option value="share">Share</option>
-                                                        <option value="embed">Embed</option>
-                                                </select>
-                                                <span>
-                                                        <input id="share-url-input" class="small-input" type="text" readonly>
-                                                </span>
+    <main class="main">
+      <section class="toolbar" aria-label="Share">
+        <div class="intro">
+          <h1>interactive &amp; shareable code snippets</h1>
+        </div>
+        <div class="actions">
+          <a id="preview" class="btn btn-icon-only" href="/view" target="_blank" rel="noopener" aria-label="Preview" data-tip="Preview"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+          <button id="copy-link" class="btn btn-icon-only" type="button" aria-label="Copy link" data-tip="Copy link"><svg class="icon icon-default" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><svg class="icon icon-done" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <button id="toggle-embed" class="btn btn-icon-only" type="button" aria-expanded="false" aria-controls="embed-panel" aria-label="Embed" data-tip="Embed"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></button>
+        </div>
+      </section>
 
-                                                <clipboard-copy id="copy-url" for="share-url" class="button-8">
-                                                        <i class="far fa-clone"></i>
-                                                </clipboard-copy>
+      <section id="embed-panel" class="embed-panel" hidden aria-label="Embed code">
+        <div class="embed-size">
+          <label>Width <input id="embed-width" type="text" value="100%" inputmode="text" size="6"></label>
+          <label>Height <input id="embed-height" type="number" value="400" min="100" step="10"> px</label>
+        </div>
+        <textarea id="embed-code" class="embed-code" readonly rows="3" aria-label="Embed code"></textarea>
+        <button id="copy-embed" class="btn btn-icon-only" type="button" aria-label="Copy embed code" data-tip="Copy embed code"><svg class="icon icon-default" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="icon icon-done" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></button>
+      </section>
 
-                                        </span>
-                                        <span id="multi-snippets">
-                                                <button id="new-snippet" class="button-8">New Snippet</button>
-                                                <select class="lang-select button-8"></select>
+      <p id="url-warning" class="warning" hidden></p>
 
-                                        </span>
-                                        <span class="horizontal-space">
-                                                <select class="lang-select button-8 select-8" title="Change Language"></select>
-                                        </span>
-                                        <span class="horizontal-space">
-                                                <span id="single-snippet">
-                                                        <button id="activate-multi" title="Combine multiple snippets" class="button-8">
-                                                                <i class="fas fa-angle-double-right"></i>
-                                                        </button>
-                                                </span>
-                                        </span>
+      <div id="snippets" class="snippets"></div>
 
-                                </div>
-                                <div class="reset"></div>
-                                <span>
-                                        <button style="display:none;" id="add-clojure" class="button-8">Toggle Clojure</button>
-                                </span>
-                        </div>
-                        <div id="snippets"></div>
-                </div>
-                <script src="/edit.js"></script>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-                <link rel="stylesheet" type="text/css" href="/edit.css">
-                <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css">
-        </body>
+      <button id="add-snippet" class="btn btn-add" type="button" aria-label="Add snippet" data-tip="Add snippet"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+
+      <section id="info" class="info" aria-labelledby="info-title" hidden>
+        <h2 id="info-title">Docs</h2>
+        <ol class="steps">
+          <li>
+            <h3>Pick a language</h3>
+            <p>Choose it from the menu above the editor: JavaScript, Python, Ruby, Clojure, Go, C++, SQL and more.</p>
+          </li>
+          <li>
+            <h3>Write code</h3>
+            <p>The code runs in your browser as you type and the result shows up right below the editor. Nothing is sent to a server.</p>
+          </li>
+          <li>
+            <h3>Combine snippets</h3>
+            <p><svg class="icon icon-inline" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> adds another snippet to the page, in any language. <svg class="icon icon-inline" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> removes one.</p>
+          </li>
+          <li>
+            <h3>Share a link</h3>
+            <p><svg class="icon icon-inline" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg> copies a link to your snippets. Whoever opens it can run and edit the code.</p>
+          </li>
+          <li>
+            <h3>Embed anywhere</h3>
+            <p><svg class="icon icon-inline" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> gives you an iframe to paste in a blog post, a doc or a slide. Set its width and height, then copy the code.</p>
+          </li>
+          <li>
+            <h3>Preview</h3>
+            <p><svg class="icon icon-inline" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> opens your snippets as your readers will see them.</p>
+          </li>
+        </ol>
+        <p class="info-note">Your code is stored in the link itself: no account, nothing saved on our side. Long code makes long links, which some apps may truncate.</p>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <template id="card-template">
+      <section class="card">
+        <div class="card-header">
+          <span class="status">Loading…</span>
+          <button class="btn btn-icon remove" type="button" aria-label="Remove snippet" data-tip="Remove snippet"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+      </section>
+    </template>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
+    <script src="/common.js"></script>
+    <script src="/edit.js"></script>
+  </body>
 </html>

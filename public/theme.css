@@ -1,0 +1,90 @@
+/* Dark theme shared by the editor and the viewer, including the CodeMirror "klipse-dark" theme. */
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-2: #1e1e1e;
+  --hover: #2a2a2a;
+  --border: #333333;
+  --border-strong: #8a8a8a;
+  --text: #ededed;
+  --muted: #9a9a9a;
+  --radius: 8px;
+  --font-code: 'FiraCode', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-code);
+}
+
+/* Results that render HTML (HTML, Markdown, Reagent...) */
+.klipse-result {
+  color: var(--text);
+}
+
+.cm-s-klipse-dark.CodeMirror {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-family: var(--font-code);
+  font-size: 18px;
+  line-height: 1.6;
+  height: auto;
+}
+.cm-s-klipse-dark .CodeMirror-gutters {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+}
+.cm-s-klipse-dark .CodeMirror-linenumber { color: #6e6e6e; }
+.cm-s-klipse-dark .CodeMirror-cursor { border-left: 2px solid var(--text); }
+.cm-s-klipse-dark .CodeMirror-selected,
+.cm-s-klipse-dark.CodeMirror-focused .CodeMirror-selected { background: #264f78; }
+.cm-s-klipse-dark .CodeMirror-line::selection,
+.cm-s-klipse-dark .CodeMirror-line > span::selection,
+.cm-s-klipse-dark .CodeMirror-line > span > span::selection { background: #264f78; }
+.cm-s-klipse-dark .CodeMirror-scrollbar-filler,
+.cm-s-klipse-dark .CodeMirror-gutter-filler { background: var(--surface); }
+.cm-s-klipse-dark .cm-keyword,
+.cm-s-klipse-dark .cm-operator { color: #ff7b72; }
+.cm-s-klipse-dark .cm-atom,
+.cm-s-klipse-dark .cm-number,
+.cm-s-klipse-dark .cm-attribute,
+.cm-s-klipse-dark .cm-link { color: #79c0ff; }
+.cm-s-klipse-dark .cm-def,
+.cm-s-klipse-dark .cm-property { color: #d2a8ff; }
+.cm-s-klipse-dark .cm-variable { color: var(--text); }
+.cm-s-klipse-dark .cm-variable-2,
+.cm-s-klipse-dark .cm-variable-3,
+.cm-s-klipse-dark .cm-type,
+.cm-s-klipse-dark .cm-builtin { color: #ffa657; }
+.cm-s-klipse-dark .cm-string,
+.cm-s-klipse-dark .cm-string-2 { color: #a5d6ff; }
+.cm-s-klipse-dark .cm-comment { color: var(--muted); font-style: italic; }
+.cm-s-klipse-dark .cm-tag { color: #7ee787; }
+.cm-s-klipse-dark .cm-meta,
+.cm-s-klipse-dark .cm-qualifier,
+.cm-s-klipse-dark .cm-bracket { color: var(--muted); }
+.cm-s-klipse-dark .cm-header { color: #79c0ff; font-weight: bold; }
+.cm-s-klipse-dark .cm-error { color: #f85149; }
+.cm-s-klipse-dark div.CodeMirror span.CodeMirror-matchingbracket,
+.cm-s-klipse-dark span.CodeMirror-matchingbracket { color: #3fb950; text-decoration: underline; }
+.cm-s-klipse-dark .CodeMirror-activeline-background { background: var(--surface-2); }
+
+/* The editor and its result read as one block. */
+.klipse-snippet > .CodeMirror {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.klipse-result .cm-s-klipse-dark.CodeMirror {
+  background: var(--surface-2);
+  border-top: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+/* Drawings (Python Turtle...) use dark ink on stacked transparent canvases: keep them on a light background. */
+.klipse-container:has(canvas) {
+  background: #f6f8fa;
+  border-radius: 0 0 var(--radius) var(--radius);
+}

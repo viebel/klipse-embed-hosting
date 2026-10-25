@@ -1,39 +1,81 @@
-.mention {
-    padding: 10px;
-    overflow: hidden;
-    font: 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-    color: #39739d;
-    background-color: #e1ecf4;
-    border-bottom: 1px solid #ddd;
-    border-radius: 3px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    box-shadow: 0 2px 1px -1px #747d8833, 0 1px 1px 0 #747d8824, 0 1px 3px 0 #747d881f;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-
-.mention a {
-    font-weight: 600;
-    color: #39739d;
-    text-decoration: none;
+body {
+  padding: 8px;
 }
 
+.klipse-snippet-container {
+  margin-bottom: 12px;
+}
 
 .klipse-snippet-wrapper {
-    overflow: auto;
-    word-wrap: normal;
+  overflow: auto;
+  word-wrap: normal;
 }
 
-.CodeMirror {
-    font-family: 'FiraCode', monospace;
+/* Raw code shown while Klipse loads */
+.klipse-snippet-wrapper > pre {
+  margin: 0;
+  padding: 10px 14px;
+  font-family: var(--font-code);
+  font-size: 18px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
-.klipse-result .CodeMirror {
-    border-top: 0;
+/* The mention closes the block: the result above it loses its bottom radius. */
+.klipse-snippet-container .klipse-result .cm-s-klipse-dark.CodeMirror {
+  border-radius: 0;
 }
 
-.klipse-snippet > .CodeMirror {
-    border-radius: 2px 2px 0px 0px;
+.mention {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 12px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 
+.mention a {
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+}
 
+.mention a:hover {
+  text-decoration: underline;
+}
+
+.mention .edit {
+  padding: 3px 10px;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+}
+
+.mention .edit:hover {
+  background: var(--hover);
+  border-color: var(--text);
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.klipse-snippet-container .klipse-container:has(canvas) {
+  border-radius: 0;
+}

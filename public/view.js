@@ -1,205 +1,68 @@
 (function() {
-  var klipseMinURL = "https://storage.googleapis.com/app.klipse.tech/plugin_prod/js/klipse_plugin.min.js" ;
-  var klipseClojureURL =  "https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js?v=8.0.1";
+  var K = window.KlipseEmbed;
 
-  function setKlipseSettings () {
-    window.klipse_settings = {
-      codemirror_options_in: {
-        lineWrapping: true,
-        lineNumbers: true,
-        autoCloseBrackets: true
-      },
-      codemirror_options_out: {
-        lineWrapping: true
-      },
-      beautify_strings: true,
-      selector: '.clojure, .clj, .cljs, .clojurescript',
-      selector_js: '.cljsTranspile',
-      selector_eval_js: '.javascript, .js',
-      selector_reagent: '.reagent',
-      selector_golang: '.go, .golang',
-      selector_prolog_rules: '.prolog-rules',
-      selector_prolog_query: '.prolog-query',
-      selector_render_jsx: '.jsx',
-      selector_es2017: '.es2017',
-      selector_brainfuck: '.brainfuck',
-      selector_transpile_jsx: '.transpile-jsx',
-      selector_eval_php: '.php',
-      selector_eval_markdown: '.markdown',
-      selector_eval_lambdaway: '.klipse-lambdaway',
-      selector_pyodide: '.python',
-      selector_eval_python_client: '.pythonTurtle, .python2',
-      selector_eval_html: '.html',
-      selector_sql: '.sql',
-      selector_eval_ruby: '.ruby',
-      selector_eval_scheme: '.scheme',
-      selector_eval_clisp: '.lisp',    
-      selector_eval_cpp: '.cpp',
-      selector_google_charts: '.google-chart',
-      selector_plot: '.plot',
-      selector_oblivion: '.oblivion',
-      selector_lua: '.lua',
-      selector_eval_ocaml: '.ocaml',
-      selector_transpile_ocaml: '.transpile-ocaml',
-      selector_transpile_reason_3: '.transpile-reason',
-      selector_transpile_reason_3_to_ocaml: '.transpile-reason-to-ocaml',
-      selector_eval_reason_3: '.reason',
-      selector_eval_reason_3_with_types: '.reason-types',
-      selector_eval_ocaml_with_types: '.ocaml-types',
-      selector_ocaml_to_reason: '.ocaml-to-reason',
-    };
-  }
+  var snippetsEl = document.getElementById('snippets');
 
-  var languageNames = {
-    'brainfuck': 'Brainfuck',
-    'cpp': 'CPP',
-    'go': 'Go',
-    'html': 'HTML',
-    'javascript': 'JavaScript',
-    'lisp': 'LISP',
-    'lua': 'Lua',
-    'markdown': 'Markdown',
-    'ocaml': 'OCaml',
-    'python': 'Python',
-    'ruby': 'Ruby',
-    'sql': 'SQL',
-    'scheme': 'Scheme',
-    'clojure': 'Clojure',
-    'cljsTranspile': 'ClojureScript Transpile',
-    'reagent': 'Reagent',
-  };
-
-  var defaultLanguage = 'javascript';
-
-  function clojureModeOn(params) {
-    return (params.get("clojure") == "1") || 
-      (params.get("lang") == "clojure") ||
-      (params.get("lang") == "cljsTranspile") ||
-      (params.get("lang") == "reagent");
-  }
-
-  function decodeSrc(src) {
-    return decodeURIComponent(atob(src));
-  }
-
-  function encodeSrc(src) {
-    if(src == "\u200B") {  // That's how CodeMirror renders empty snippets
-      return "";
-    }
-    return btoa(encodeURIComponent(src));
-  }
-
-  function encodeSnippet(params, src, lang) {
-    params.append('src', encodeSrc(src));
-    params.append('lang', lang);
-    return params;
-  }
-
-  function setSnippets(params, snippets) {
-    snippets.forEach(function(snippet, index) {
-      // It's not safe to read from the HTML element (line breaks are not maintained).
-      src = window.klipse_editors[index].getValue();
-      lang = snippet.parentElement.dataset.language;
-      encodeSnippet(params, src, lang);
+  function currentSnippets() {
+    return Array.from(snippetsEl.querySelectorAll('.klipse-snippet-container')).map(function(container) {
+      var value = K.editorValue(container);
+      return {lang: container.dataset.language, src: value === null ? container.initialSrc : value};
     });
-    return params;
   }
 
-  function snippetRelatedParam(name) {
-    return ['src', 'lang'].includes(name);
-  }
-
-  function cleanedSearchParams() {
-    var cleanedParams = new URLSearchParams();
-    for(var pair of getSearchParams().entries()) {
-      if(!snippetRelatedParam(pair[0])) {
-        cleanedParams.append(pair[0], pair[1]);
-      }
-    }
-    return cleanedParams;
-  }
-  function updatedSearchParams() {
-    var snippets = Array.from(document.getElementsByClassName('klipse-snippet'));
-    var params = cleanedSearchParams();
-    setSnippets(params, snippets);
-    return params;
-  }
-
-  function updateSearchParams() {
-    var url = new URL(location);
-    url.search = updatedSearchParams().toString();
-    history.pushState({}, '', url);
-  }
-
+  // The edit link carries the code as modified by the reader.
   function editModeURL() {
     var url = new URL(location);
-    url.pathname =  '/';
+    url.pathname = '/';
+    url.search = K.snippetsSearchParams(new URLSearchParams(location.search), currentSnippets()).toString();
     return url.toString();
   }
 
-  function addSnippet(snippets, src, lang) {
+  function addSnippet(src, lang) {
     var container = document.createElement('div');
     container.className = 'klipse-snippet-container';
+    container.dataset.language = lang;
+    container.initialSrc = src || '';
+
     var wrapper = document.createElement('div');
-    wrapper.dataset.language = lang;
     wrapper.className = 'klipse-snippet-wrapper';
-    window.wrapper = wrapper;
-
-    var pre = document.createElement('pre');
-    pre.className = lang;
-    var code = document.createElement('code');
-    code.innerHTML = src;
-    pre.appendChild(code);
-    wrapper.appendChild(pre);
+    wrapper.appendChild(K.createPre(lang, src));
     container.appendChild(wrapper);
-    wrapper.onmouseleave = updateSearchParams;
 
-    snippets.appendChild(container);
     var mention = document.createElement('div');
-    mention.className = "mention";
-    mention.innerHTML = `Interactive ${languageNames[lang]} snippet powered with \u2764 by <a target = '_new' href='${editModeURL()}'>Klipse</a>`;
+    mention.className = 'mention';
+    var label = document.createElement('span');
+    label.append('Interactive ' + K.languageName(lang) + ' snippet · powered by ');
+    var klipseLink = document.createElement('a');
+    klipseLink.href = 'https://github.com/viebel/klipse';
+    klipseLink.target = '_blank';
+    klipseLink.rel = 'noopener';
+    klipseLink.textContent = 'Klipse';
+    label.appendChild(klipseLink);
+    var edit = document.createElement('a');
+    edit.className = 'edit';
+    edit.href = '/';
+    edit.target = '_blank';
+    edit.rel = 'noopener';
+    edit.textContent = 'Edit & remix ✎';
+    edit.onclick = function() {
+      edit.href = editModeURL();
+      K.track('remix');
+    };
+    mention.append(label, edit);
     container.appendChild(mention);
-  }
 
-  function getSearchParams() {
-    return new URLSearchParams(window.location.search);
-  }
-
-  function addSnippets() {
-    var args = getSearchParams();
-    var src = '';
-    var lang;
-    if (!args.get('lang')) {
-      args.set('lang', defaultLanguage);
-    }
-    for(var [name, val] of args.entries()) {
-      if(name == 'src') {
-        src = decodeSrc(val);
-      } else if (name == 'lang') {
-        addSnippet(snippets, src, val);
-        src = '';
-        lang = val;
-      }
-    }
-  }
-
-  function addScript(url) {
-    var script = document.createElement('script');
-    script.src = url;
-    document.body.append(script);
-  }
-
-  function loadKlipse() {
-    var klipseURL = clojureModeOn(getSearchParams())? klipseClojureURL : klipseMinURL;
-    addScript(klipseURL);
+    snippetsEl.appendChild(container);
   }
 
   function main() {
-    console.log('Klipse embed version: ', '0.0.13');
-    setKlipseSettings();
-    var snippets = document.getElementById('snippets');
-    addSnippets(snippets);
-    loadKlipse();
+    console.log('Klipse embed version: ', '0.1.0');
+    var params = new URLSearchParams(location.search);
+    var snippets = K.parseSnippets(params);
+    snippets.forEach(function(s) {
+      addSnippet(s.src, s.lang);
+    });
+    K.loadKlipse(K.needsClojurePlugin(params, snippets));
   }
   main();
 })();
