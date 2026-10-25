@@ -328,7 +328,7 @@ hilbert2(5, "a", 90, 5, myTurtle)
  
   function viewModeURL() {
     var url = new URL(location);
-    url.pathname =  '/';
+    url.pathname =  '/view';
     return url;
   }
 

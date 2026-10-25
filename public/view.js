@@ -133,7 +133,7 @@
 
   function editModeURL() {
     var url = new URL(location);
-    url.pathname =  '/edit.html';
+    url.pathname =  '/';
     return url.toString();
   }
 

@@ -1,15 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "",
-  "outputDirectory": "web",
-  "functions": {
-    "api/index.php": {
-      "runtime": "vercel-php@0.9.0",
-      "includeFiles": "web/index.php"
-    }
-  },
   "rewrites": [
-    { "source": "/edit.php", "destination": "/edit.html" },
-    { "source": "/(.*)", "destination": "/api/index.php" }
+    { "source": "/view", "destination": "/api/view" }
   ]
 }

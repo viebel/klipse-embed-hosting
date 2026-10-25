@@ -1,0 +1,7 @@
+{
+  "name": "klipse-embed-hosting",
+  "private": true,
+  "scripts": {
+    "dev": "node dev.js"
+  }
+}
